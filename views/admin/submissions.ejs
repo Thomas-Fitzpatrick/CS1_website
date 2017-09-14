@@ -1,0 +1,31 @@
+<% include ../partials/header %>
+
+    <div class="container">
+        <div style="width: 30%;" class="form-group">
+            <!--<form action="/results/new" method="GE">-->
+                <a href="/results/new" target="_blank"><button class="btn btn-lg btn-primary btn-block">Create New Syllabus Entry</button></a>
+            <!--</form>-->
+        </div>
+        
+        <h1>Submissions:</h1>
+        <table class="table-hover table-condensed">
+            <thead>
+                <tr>
+                    <th>Country</th>
+                    <th>For Majors?</th>
+                    <th>URL</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% submissions.forEach(function(submission){ %>
+                        <tr>
+                            <td><%= submission.country %></td>
+                            <td><%= submission.forMajors %></td>
+                            <td><%= submission.url %></td>
+                        </tr>
+                <% }) %>
+            </tbody>
+        </table>
+    </div>
+
+<% include ../partials/footer %>

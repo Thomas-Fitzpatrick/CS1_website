@@ -1,0 +1,69 @@
+<% include ../partials/header %>
+
+
+<div class="container">
+    <div>
+        <h1 style="text-align: center">Submit new Syllabus</h1>
+            <div style="width:60%; margin: 25px auto">
+                <form action="/results" method="POST">
+                    <div class="form-group">
+                        <input class="form-control" type="text" placeholder="Country of Course" name="syllabus[country]"> 
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" type="text" placeholder="University Name:" name="syllabus[uniName]"> 
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" type="text" placeholder="Course Code" name="syllabus[courseCode]"> 
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" type="text" placeholder="Course Name" name="syllabus[courseName]"> 
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" type="text" placeholder="Date of Syllabus" name="syllabus[syllabusDate]"> 
+                    </div>
+                    <div class="form-group">
+                        <input style="color: red; background: yellow;" class="form-control" type="text" placeholder="Source of Syllabus (Manual/Submission)" name="syllabus[syllabusSource]"> 
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" type="text" placeholder="Degrees course is on" name="syllabus[associatedDegrees]"> 
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" type="text" placeholder="Prerequisites" name="syllabus[prerequisites]"> 
+                    </div>
+                    <div class="form-group">
+                        <input style="color: red; background: yellow;" class="form-control" type="text" placeholder="Is this for Majors" name="syllabus[forMajors]"> 
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" type="text" placeholder="Stage/Year of Course" name="syllabus[courseStage]"> 
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" type="text" placeholder="Semester of Course" name="syllabus[courseSemester]"> 
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" type="text" placeholder="Programming Language" name="syllabus[programmingLanguage]"> 
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" type="text" placeholder="Language of Instruction" name="syllabus[instructionLanguage]"> 
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" type="text" placeholder="URL of Syllabus" name="syllabus[url]"> 
+                    </div>
+                    <div class="form-group">
+                        <input style="color: red; background: yellow;" class="form-control" type="text" placeholder="LOs explicit or Scraped" name="syllabus[explicitOrScraped]"> 
+                    </div>
+                    <div class="form-group">
+                        <input style="color: red; background: yellow;" class="form-control" type="text" placeholder="(LISTINPUT!!!)List of Learning Outcomes" name="syllabus[learningOutcomes]"> 
+                    </div>
+                    <div class="form-group">
+                        <input style="color: red; background: yellow;" class="form-control" type="text" placeholder="(LISTINPUT!!!)List of Categories" name="syllabus[LOCategories]"> 
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-lg btn-primary btn-block">Submit</button>
+                    </div>
+                </form>
+            </div>
+    </div>
+</div>
+
+
+<% include ../partials/footer %>

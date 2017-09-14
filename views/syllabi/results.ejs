@@ -1,0 +1,108 @@
+<% include ../partials/header %>
+
+    
+
+    <div class="container">
+        <form action="/results/filter" method="GET" class="form-inline">
+            <select class="form-control" name="lang">
+                <option value="">Language - Any</option>
+                <% fields.languages.forEach(function(lang){ %>
+                        <option value="<%=lang%>"><%=lang%></option>
+                <% }) %>
+            </select>
+            <select class="form-control" name="country">
+              	<option value="">Location - Any</option>
+                <% fields.countries.forEach(function(country){ %>
+                        <option value="<%=country%>"><%=country%></option>
+                <% }) %>
+            </select>
+            <select class="form-control" name="explicitOrScraped">
+              	<option value="">Explicit or Scraped LO</option>
+              	<option value="Explicit">Explicit only</option>
+              	<option value="Scraped">Scraped only</option>
+            </select>
+            
+            <select class="form-control" name="source">
+              	<option value="">All sources</option>
+              	<option value="Manual search">Manual only</option>
+              	<option value="CITIDEL">CITIDEL only</option>
+              	<option value="Submitted">Submitted only</option>
+            </select>
+            <div class="form-group">
+                <button class="btn btn-md btn-primary btn-block">Submit</button>
+            </div>
+        </form>
+        
+        <h5><%= syllabi.length %> results matching the specification: <%= language + " " + country + ' ' + explicitOrScraped + ' ' + syllabusSource%></h5>
+        
+        
+        <ul class="nav nav-tabs">
+            <li class="active"><a data-toggle="tab" href="#categories">Categories</a></li>
+            <li><a data-toggle="tab" href="#syllabi">Syllabi</a></li>
+            <li><a data-toggle="tab" href="#links">Links</a></li>
+        </ul>
+        
+        
+        
+        <div class="tab-content">
+            <div id="categories" class="tab-pane fadein active">
+                <table class="table-hover table-condensed">
+                    <% fields.categories.forEach(function(category){ %>
+                        <% var result = syllabi.filter(function(syllabus){ %>
+                            <% return syllabus.LOCategories.indexOf(category) > -1; %>
+                        <% }) %>
+        
+                        <tr>
+                            <td><%= category %></td>
+                            <td><%= result.length %></td>
+                        </tr>
+                    <% }) %>
+                </table>
+            </div>
+            
+            <div id="syllabi" class="tab-pane fade">
+                <table id="subTable" class="table-hover table-condensed">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Location</th>
+                            <th>Module Code</th>
+                            <th>Module Title</th>
+                            <th>University</th>
+                            <th>Programming Language</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% var i = 1; %>
+                        <% syllabi.forEach(function(syllabus){ %>
+                            
+                                <tr>
+                                    <td><%=i%></td>
+                                    <td><%= syllabus.country %></td>
+                                    <td><%= syllabus.courseCode %></td>
+                                    <td><a href="/results/<%= syllabus._id %>"><%= syllabus.courseName %></a></td>
+                                    <td><%= syllabus.uniName %></td>
+                                    <td><%= syllabus.programmingLanguage %></td>
+                                </tr>
+                                <% i = i + 1;%>
+                        <% }) %>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div id="links" class="tab-pane fade">
+                <table id="subTable" class="table-hover table-condensed">
+                    <tbody>
+                        <% syllabi.forEach(function(syllabus){ %>
+                                <tr>
+                                    <td><a href="<%= syllabus.url %>"><%= syllabus.url %></a></td>
+                                </tr>
+                        <% }) %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+    </div>
+
+<% include ../partials/footer %>
