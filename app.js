@@ -10,7 +10,8 @@ var Syllabus        = require("./models/syllabus"),
     Submission      = require("./models/submission"),
     User            = require("./models/user");
 
-mongoose.connect("mongodb://localhost/CS1_results");
+// mongoose.connect("mongodb://localhost/CS1_results");
+mongoose.connect("mongodb://thomas:rusty@ds137464.mlab.com:37464/cs1_analysis");
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs"); 
 app.use(express.static(__dirname + "/public"));
