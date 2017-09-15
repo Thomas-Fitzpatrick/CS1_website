@@ -18,8 +18,6 @@ router.get("/new", function(req, res) {
 
 //get results page
 router.get("/", function(req, res){
-                req.flash("success", "testing the flash");
-
     var language = 'all';
     var country = '';
     var explicitOrScraped = '';
