@@ -39,7 +39,7 @@
         <ul class="nav nav-tabs">
             <li class="active"><a data-toggle="tab" href="#categories">Categories</a></li>
             <li><a data-toggle="tab" href="#syllabi">Syllabi</a></li>
-            <li><a data-toggle="tab" href="#links">Links</a></li>
+            <!--<li><a data-toggle="tab" href="#links">Links</a></li>-->
         </ul>
         
         
@@ -51,9 +51,9 @@
                         <% var result = syllabi.filter(function(syllabus){ %>
                             <% return syllabus.LOCategories.indexOf(category) > -1; %>
                         <% }) %>
-        
+    
                         <tr>
-                            <td><%= category %></td>
+                            <td><a href="/results/category/<%= category %>"><%= category %></a></td>
                             <td><%= result.length %></td>
                         </tr>
                     <% }) %>
@@ -90,17 +90,17 @@
                 </table>
             </div>
             
-            <div id="links" class="tab-pane fade">
-                <table id="subTable" class="table-hover table-condensed">
-                    <tbody>
-                        <% syllabi.forEach(function(syllabus){ %>
-                                <tr>
-                                    <td><a href="<%= syllabus.url %>"><%= syllabus.url %></a></td>
-                                </tr>
-                        <% }) %>
-                    </tbody>
-                </table>
-            </div>
+            <!--<div id="links" class="tab-pane fade">-->
+            <!--    <table id="subTable" class="table-hover table-condensed">-->
+            <!--        <tbody>-->
+            <!--            <% syllabi.forEach(function(syllabus){ %>-->
+            <!--                    <tr>-->
+            <!--                        <td><a href="<%= syllabus.url %>"><%= syllabus.url %></a></td>-->
+            <!--                    </tr>-->
+            <!--            <% }) %>-->
+            <!--        </tbody>-->
+            <!--    </table>-->
+            <!--</div>-->
         </div>
         
     </div>

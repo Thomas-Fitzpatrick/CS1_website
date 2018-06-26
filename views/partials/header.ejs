@@ -9,15 +9,15 @@
 
     </head>
     <body>
-
+        
         <div class="container">
             <header class="jumbotron">
                 <div class="container">
-                    <h1>Categorising CS1</h1>
+                    <h1>Categorizing CS1</h1>
                     <p>What are CS1 students learning?</p>
                 </div>
             </header>
-
+            
             <nav class="navbar navbar-default">
                 <div class="container-fluid">
                     <div class="navbar-header">
@@ -26,35 +26,17 @@
                     <ul class="nav navbar-nav navbar-left">
                         <li><a href="/results">Results</a></li>
                     </ul>
-                    <% if(!currentUser){ %>
-                        <ul class="nav navbar-nav navbar-left">
-                            <li><a href="/submissions/new">Contribute Syllabus</a></li>
-                        </ul>
-                        <ul class="nav navbar-nav navbar-right">
-                            <li><a href="/admin">Admin</a></li>
-                        </ul>
-                    <% } else { %>
-                        <ul class="nav navbar-nav navbar-left">
-                            <li><a href="/submissions">Submissions</a></li>
-                        </ul>
-                        <ul class="nav navbar-nav navbar-right">
-                            <li><a href="/logout">Logout</a></li>
-                        </ul>
-                    <% } %>
+                    <ul class="nav navbar-nav navbar-left">
+                        <li><a href="/help">Help</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-left">
+                        <li><a href="/submissions/new">Contribute Syllabus</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="/admin">Admin</a></li>
+                    </ul>
                 </div>
             </nav>
-            
-            <% if(error && error.length > 0){  %>
-                <div class="alert alert-danger" role="alert">
-                    <%= error %> 
-                </div>
-            <% } %>
-            
-            <% if(success && success.length > 0){ %>
-                <div class="alert alert-success" role="alert">
-                    <%= success %> 
-                </div>
-            <% } %>
         </div>
         
-         
+       
