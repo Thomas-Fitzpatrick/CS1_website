@@ -2,25 +2,54 @@ var express         = require("express"),
     app             = express(),
     bodyParser      = require("body-parser"),
     mongoose        = require("mongoose"),
+<<<<<<< HEAD
+=======
+    flash           = require("connect-flash"),
+>>>>>>> parent of d500e35... update to most recent version
     passport        = require("passport"),
     LocalStrategy   = require("passport-local");
     
 var Syllabus        = require("./models/syllabus"),
     Submission      = require("./models/submission"),
+<<<<<<< HEAD
     User            = require("./models/user"),
     seedDB          = require("./seeds");
+=======
+    User            = require("./models/user");
+>>>>>>> parent of d500e35... update to most recent version
 
-mongoose.connect("mongodb://localhost/CS1_results");
+// mongoose.connect("mongodb://localhost/CS1_results");
+mongoose.connect("mongodb://thomas:rusty@ds137464.mlab.com:37464/cs1_analysis");
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs"); 
 app.use(express.static(__dirname + "/public"));
+app.use(flash());
 
-    
-var fields = {};
-seedDB(function(f){
-    fields = f;
+var resultsRoutes   = require("./routes/results"),
+    adminRoutes     = require("./routes/admin"),
+    submissionRoutes= require("./routes/submissions");
+
+
+app.use(require("express-session")({
+    secret: "This is the first secret I could think of!",
+    resave: false, 
+    saveUninitialized: false
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new LocalStrategy(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
+app.use(function(req, res, next){
+    res.locals.currentUser = req.user;
+    res.locals.error = req.flash("error");
+    res.locals.success = req.flash("success");
+    next();
 });
 
+<<<<<<< HEAD
 //Passport config
 app.use(require ("express-session")({
     secret: "What are CS1 students learning?",
@@ -188,20 +217,35 @@ app.get("/results/filter", function(req, res){
         }
     });
 });
+=======
+app.use("/submissions", submissionRoutes);
+app.use("/", adminRoutes);
+app.use("/results", resultsRoutes);
 
 
-
-app.get("/results/:id", function(req, res) {
-    Syllabus.findById(req.params.id, function(err, foundSyllabus){
-        if(err){
-            console.log(err);
-        } else {
-            res.render("syllabi/show", {syllabus: foundSyllabus});
-        }
-    });
+// get home page
+app.get("/", function(req, res){
+    res.render("home");
 });
 
 
+//**********ADD USER**********
+// User.register(new User({username: "cs1admin"}), "admin", function(err, user){
+//     if(err){
+//         console.log(err);
+//     }
+//     passport.authenticate(("local"));
+// }); 
+>>>>>>> parent of d500e35... update to most recent version
+
+
+
+app.get("*", function(req, res) {
+    res.redirect("/");
+});
+
+
+<<<<<<< HEAD
 //get results page
 app.get("/results", function(req, res){
     var language = 'all';
@@ -238,6 +282,8 @@ app.get("*", function(req, res) {
     res.redirect("/");
 });
 
+=======
+>>>>>>> parent of d500e35... update to most recent version
 app.listen(process.env.PORT, process.env.IP, function(){
     console.log("The server is runnning");
 });
