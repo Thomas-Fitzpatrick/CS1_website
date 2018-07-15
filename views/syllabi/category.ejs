@@ -1,9 +1,53 @@
-<% include partials/header %>
+<% include ../partials/header %>
 
 <div class="container">
-    <h1>Category Viewer</h1>
-    
-    <P>Syllabi from particular categories</P>
-</div>
+        <h1>Category View: <%=category%></h1>
+        
+        <h5><%= syllabi.length %> From an intital search for: <%= language + " " + country + ' ' + explicitOrScraped + ' ' + syllabusSource%></h5>
+        
+        <div id="syllabi">
+            <table id="subTable" class="table-hover table-condensed">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Location</th>
+                        <th>Module Code</th>
+                        <th>Module Title</th>
+                        <th>University</th>
+                        <th>Programming Language</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% var i = 1; %>
+                    <% syllabi.forEach(function(syllabus){ %>
+                        
+                            <tr>
+                                <td><%=i%></td>
+                                <td><%= syllabus.country %></td>
+                                <td><%= syllabus.courseCode %></td>
+                                <td><a href="/results/<%= syllabus._id %>"><%= syllabus.courseName %></a></td>
+                                <td><%= syllabus.uniName %></td>
+                                <td><%= syllabus.programmingLanguage %></td>
+                            </tr>
+                            <% i = i + 1;%>
+                    <% }) %>
+                </tbody>
+            </table>
+        </div>
+            
+            <!--<div id="links" class="tab-pane fade">-->
+            <!--    <table id="subTable" class="table-hover table-condensed">-->
+            <!--        <tbody>-->
+            <!--            <% syllabi.forEach(function(syllabus){ %>-->
+            <!--                    <tr>-->
+            <!--                        <td><a href="<%= syllabus.url %>"><%= syllabus.url %></a></td>-->
+            <!--                    </tr>-->
+            <!--            <% }) %>-->
+            <!--        </tbody>-->
+            <!--    </table>-->
+            <!--</div>-->
+        </div>
+        
+    </div>
 
-<% include partials/footer %>
+<% include ../partials/footer %>
