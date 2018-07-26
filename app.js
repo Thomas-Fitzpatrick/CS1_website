@@ -10,6 +10,7 @@ var Syllabus        = require("./models/syllabus"),
     User            = require("./models/user"),
     seedDB          = require("./seeds");
 
+
 mongoose.connect("mongodb://localhost/CS1_results");
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs"); 
@@ -71,7 +72,7 @@ app.get("/submissions/new", function(req, res) {
     res.render("syllabi/newSubmission");
 });
 
-app.post("/submissions", isLoggedIn, function(req, res){
+app.post("/submissions", function(req, res){
     Submission.create(req.body.submission, function(err, newSub){
         if(err){
             console.log(err);
