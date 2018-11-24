@@ -44,7 +44,7 @@ app.use(function(req, res, next){
 })
 
 // get home page
-app.get("/", function(req, res){
+app.get("/sigcse2019/", function(req, res){
     console.log(fields);
     // var newUser = new User({username: "admin"});
     // User.register(newUser, "12345", function(err, user){
@@ -56,7 +56,7 @@ app.get("/", function(req, res){
     res.render("home");
 });
 
-app.get("/csv", function(req, res) {
+app.get("/sigcse2019/csv", function(req, res) {
     Syllabus.find().lean().exec(function (err, syllabi) {
         if (err) {
             console.log(err)
@@ -66,40 +66,40 @@ app.get("/csv", function(req, res) {
     });
 });
 
-app.get("/admin", function(req, res) {
+app.get("/sigcse2019/admin", function(req, res) {
     res.render("admin/admin");
 });
 
-app.get("/logout", function(req, res){
+app.get("/sigcse2019/logout", function(req, res){
     req.logout();
-    res.redirect("/")
+    res.redirect("/sigcse2019/")
 })
 
-app.post("/admin", passport.authenticate("local", {
-    successRedirect: "/submissions", 
-    failureRedirect: "/admin"
+app.post("/sigcse2019/admin", passport.authenticate("local", {
+    successRedirect: "/sigcse2019/submissions", 
+    failureRedirect: "/sigcse2019/admin"
     }), function(req, res){
 });
 
-app.get("/submissions/new", function(req, res) {
+app.get("/sigcse2019/submissions/new", function(req, res) {
     res.render("syllabi/newSubmission");
 });
 
-app.post("/submissions", function(req, res){
+app.post("/sigcse2019/submissions", function(req, res){
     Submission.create(req.body.submission, function(err, newSub){
         if(err){
             console.log(err);
         } else {
-            res.redirect("/submissions/thanks");
+            res.redirect("/sigcse2019/submissions/thanks");
         }
     });
 });
 
-app.get("/submissions/thanks", function(req, res){
+app.get("/sigcse2019/submissions/thanks", function(req, res){
     res.render("syllabi/thanks");
 });
 
-app.get("/submissions", isLoggedIn, function(req, res) {
+app.get("/sigcse2019/submissions", isLoggedIn, function(req, res) {
     Submission.find({}, function(err, allSubmissions){
         if(err){
             console.log(err);
@@ -109,15 +109,15 @@ app.get("/submissions", isLoggedIn, function(req, res) {
     });
 });
 
-app.get("/results/new", isLoggedIn, function(req, res) {
+app.get("/sigcse2019/results/new", isLoggedIn, function(req, res) {
     res.render("admin/new");
 });
 
-app.get("/help", function(req, res){
+app.get("/sigcse2019/help", function(req, res){
     res.render("help");
 });
 
-app.get("/results/category", function(req, res){
+app.get("/sigcse2019/results/category", function(req, res){
     var category = req.query.category;
     var language = req.query.lang;
     var country = req.query.country;
@@ -163,7 +163,7 @@ app.get("/results/category", function(req, res){
 });
 
 // querying database for syllabi
-app.get("/results/filter", function(req, res){
+app.get("/sigcse2019/results/filter", function(req, res){
     
     var language = req.query.lang;
     var country = req.query.country;
@@ -205,7 +205,7 @@ app.get("/results/filter", function(req, res){
 
 
 
-app.get("/results/:id", function(req, res) {
+app.get("/sigcse2019/results/:id", function(req, res) {
     Syllabus.findById(req.params.id, function(err, foundSyllabus){
         if(err){
             console.log(err);
@@ -217,7 +217,7 @@ app.get("/results/:id", function(req, res) {
 
 
 //get results page
-app.get("/results", function(req, res){
+app.get("/sigcse2019/results", function(req, res){
     var language = 'all';
     var country = '';
     var explicitOrScraped = '';
@@ -237,7 +237,7 @@ app.get("/results", function(req, res){
 
 
 // CHECK FOR VALIDITY
-app.post("/results", isLoggedIn, function(req, res){
+app.post("/sigcse2019/results", isLoggedIn, function(req, res){
 
     Syllabus.create(req.body.syllabus, function(err, newSyllabus){
         if(err){
@@ -255,7 +255,7 @@ app.post("/results", isLoggedIn, function(req, res){
                             return console.log(err);
                         }
                         console.log("The file was saved!");
-                        res.redirect("syllabi/results")
+                        res.redirect("/sigcse2019/syllabi/results")
                     }); 
                 }
             });    
@@ -265,9 +265,8 @@ app.post("/results", isLoggedIn, function(req, res){
     });
 });
 
-
-app.get("*", function(req, res) {
-    res.redirect("/");
+app.get("/sigcse2019/*", function(req, res) {
+    res.redirect("/sigcse2019/");
 });
 
 app.listen(process.env.PORT, process.env.IP, function(){
@@ -278,5 +277,5 @@ function isLoggedIn(req, res, next){
     if(req.isAuthenticated()){
         return next();
     }
-    res.redirect("/admin");
+    res.redirect("/sigcse2019/admin");
 };
