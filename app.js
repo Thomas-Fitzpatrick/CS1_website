@@ -3,19 +3,22 @@ var express         = require("express"),
     bodyParser      = require("body-parser"),
     mongoose        = require("mongoose"),
     passport        = require("passport"),
-    LocalStrategy   = require("passport-local");
+    LocalStrategy   = require("passport-local"),
+    fs              = require("fs");
     
 var Syllabus        = require("./models/syllabus"),
     Submission      = require("./models/submission"),
     User            = require("./models/user"),
     seedDB          = require("./seeds");
+    // allEntries      = require("./db_sources/current_state.json");
+    
+
 
 
 mongoose.connect("mongodb://localhost/CS1_results");
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs"); 
 app.use(express.static(__dirname + "/public"));
-
     
 var fields = {};
 seedDB(function(f){
@@ -51,6 +54,16 @@ app.get("/", function(req, res){
     //     }
     // });
     res.render("home");
+});
+
+app.get("/csv", function(req, res) {
+    Syllabus.find().lean().exec(function (err, syllabi) {
+        if (err) {
+            console.log(err)
+        } else {
+            return res.end(JSON.stringify(syllabi));
+        }
+    });
 });
 
 app.get("/admin", function(req, res) {
@@ -225,11 +238,29 @@ app.get("/results", function(req, res){
 
 // CHECK FOR VALIDITY
 app.post("/results", isLoggedIn, function(req, res){
+
     Syllabus.create(req.body.syllabus, function(err, newSyllabus){
         if(err){
             res.render("admin/new");
         } else {
-            res.redirect("syllabi/results")
+            
+            Syllabus.find().lean().exec(function (err, syllabi) {
+                if (err) {
+                    console.log(err)
+                } else {
+                    console.log("found all syllabi");
+                    
+                    fs.writeFile("./db_sources/current_state.json", JSON.stringify(syllabi), function(err) {
+                        if(err) {
+                            return console.log(err);
+                        }
+                        console.log("The file was saved!");
+                        res.redirect("syllabi/results")
+                    }); 
+                }
+            });    
+            
+            
         }
     });
 });

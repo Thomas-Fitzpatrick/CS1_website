@@ -2,47 +2,47 @@ var mongoose    = require("mongoose"),
     Syllabus    = require("./models/syllabus");
     
     
-var manEntries      = require("./db_sources/Manual_LO.json");
-var citidelEntries  = require("./db_sources/CITIDEL_LO.json");
+//var manEntries      = require("./db_sources/Manual_LO.json");
+//var citidelEntries  = require("./db_sources/CITIDEL_LO.json");
 
-var allEntries = manEntries.concat(citidelEntries);
+// var allEntries = manEntries.concat(citidelEntries);
     
-function seedDB(callback){  
+// function seedDB(callback){  
     
-    var fields = {};
-    Syllabus.remove({}, function(err){
-        if(err){
-            console.log(err);
-        }
-        console.log("removed campgrounds");
+//     var fields = {};
+//     Syllabus.remove({}, function(err){
+//         if(err){
+//             console.log(err);
+//         }
+//         console.log("removed campgrounds");
         
-        var count = 0;
-        allEntries.forEach(function(seed_syllabus){
-            var chomped_languages = [];
-            seed_syllabus.programmingLanguage.forEach(function(lang){
-                chomped_languages.push(lang.trim());
-            });
-            seed_syllabus.languages = chomped_languages;
+//         var count = 0;
+//         allEntries.forEach(function(seed_syllabus){
+//             var chomped_languages = [];
+//             seed_syllabus.programmingLanguage.forEach(function(lang){
+//                 chomped_languages.push(lang.trim());
+//             });
+//             seed_syllabus.languages = chomped_languages;
             
-            seed_syllabus.country = seed_syllabus.country.trim();
+//             seed_syllabus.country = seed_syllabus.country.trim();
                 
-            Syllabus.create(seed_syllabus, function(err, data){
-                count += 1;
-                if(err){
-                    console.log(err);
-                } else {
+//             Syllabus.create(seed_syllabus, function(err, data){
+//                 count += 1;
+//                 if(err){
+//                     console.log(err);
+//                 } else {
                     
-                }
-                if(count === allEntries.length){
-                    getAvailableFields(function(fields){
-                        callback(fields);
-                    });
-                }
-            });
-        });
+//                 }
+//                 if(count === allEntries.length){
+//                     getAvailableFields(function(fields){
+//                         callback(fields);
+//                     });
+//                 }
+//             });
+//         });
         
-    });  
-}
+//     });  
+// }
 
 function getAvailableFields(callback){
     var fields = {
@@ -75,4 +75,4 @@ function getAvailableFields(callback){
     });
    
 }
-module.exports = seedDB;
+module.exports = getAvailableFields;

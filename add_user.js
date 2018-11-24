@@ -12,6 +12,5 @@ var newUser = new User({username: "thomas"});
 User.register(newUser, "admin", function(err, user){
         if(err){
                 console.log(err);
-                return res.render("home");
         }
 });
