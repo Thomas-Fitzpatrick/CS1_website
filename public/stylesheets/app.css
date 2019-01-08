@@ -1,3 +1,47 @@
 .table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
   background-color: rgba(94, 94, 94, 0.15);
 }
+
+.navbar{
+    background-color: #d9d9d9;
+    font-family: 'Raleway', sans-serif;
+    color: black;
+    border-radius: 5px;
+}
+
+.navbar .nav-link{
+    color: black;
+}
+
+.navbar .active{
+    color: grey !important;
+    background-color: white !important;
+    border-radius: 5px;
+    background-image: none !important;
+}
+
+.navbar .nav-item:hover .nav-link {
+    color: white;
+}
+
+.jumbotron{
+    background-color: #d9d9d9;
+}
+
+#title{
+    font-family: 'Raleway', sans-serif;
+    font-size: 1.5em;
+    text-align: center;
+    max-width: 80%;
+    /*font-family: 'Open Sans', sans-serif;*/
+}
+
+.show-heading{
+    font-family: 'Raleway', sans-serif;
+    font-size: 1.1em;
+    font-weight: bold;
+}
+
+p.spacer{
+    height: 1.5em;
+}

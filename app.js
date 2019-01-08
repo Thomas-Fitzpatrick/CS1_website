@@ -4,7 +4,8 @@ var express         = require("express"),
     mongoose        = require("mongoose"),
     passport        = require("passport"),
     LocalStrategy   = require("passport-local"),
-    fs              = require("fs");
+    fs              = require("fs"),
+    nodemailer      = require('nodemailer');
     
 var Syllabus        = require("./models/syllabus"),
     Submission      = require("./models/submission"),
@@ -31,6 +32,14 @@ app.use(require ("express-session")({
     resave: false,
     saveUninitialized: false
 }))
+
+var transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: 'csed.ucd@gmail.com',
+    pass: 'geQ9aZYa'
+  }
+});
 
 app.use(passport.initialize());
 app.use(passport.session());
@@ -86,6 +95,25 @@ app.get("/sigcse2019/submissions/new", function(req, res) {
 });
 
 app.post("/sigcse2019/submissions", function(req, res){
+    var mailOptions = {
+        from: 'csed.ucd@gmail.com',
+        to: 'brett.becker@ucd.ie',
+        subject: 'New syllabus submission at csed.ucd.ie',
+        text: 'The following submission was made at csed.ucd.ie:\n\n' +
+                'Country: ' + req.body.submission.country + 
+                '\nURL: ' + req.body.submission.url + 
+                '\nforMajors: ' + req.body.submission.forMajors
+                
+    };
+    
+    transporter.sendMail(mailOptions, function(error, info){
+        if (error) {
+            console.log(error);
+        } else {
+            console.log('Email sent: ' + info.response);
+        }
+    });
+    
     Submission.create(req.body.submission, function(err, newSub){
         if(err){
             console.log(err);
@@ -117,6 +145,10 @@ app.get("/sigcse2019/help", function(req, res){
     res.render("help");
 });
 
+app.get("/sigcse2019/download", function(req, res){
+    res.render("download");
+});
+
 app.get("/sigcse2019/results/category", function(req, res){
     var category = req.query.category;
     var language = req.query.lang;
@@ -124,11 +156,6 @@ app.get("/sigcse2019/results/category", function(req, res){
     var explicitOrScraped = req.query.explicitOrScraped;
     var syllabusSource = req.query.source;
     var requirements = {};
-    console.log("c" + category);
-    console.log("l" + language);
-    console.log("c" + country);
-    console.log("e" + explicitOrScraped);
-    console.log("s" + syllabusSource);
 
     if(category != ""){
         requirements.LOCategories = category;
