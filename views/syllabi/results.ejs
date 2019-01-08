@@ -1,8 +1,10 @@
 <% include ../partials/header %>
 
     
-
+    <p class="spacer"></p>
+    
     <div class="container">
+        <p>Search specifications:</p>
         <form action="/sigcse2019/results/filter" method="GET" class="form-inline">
             <select class="form-control" name="lang">
                 <option value="">Language - Any</option>
@@ -33,40 +35,56 @@
             </div>
         </form>
         
-        <h5><%= syllabi.length %> results matching the specification: <%= language + " " + country + ' ' + explicitOrScraped + ' ' + syllabusSource%></h5>
+        <p class="spacer"></p>
         
-        <ul class="nav nav-tabs">
-            <li class="active"><a data-toggle="tab" href="#categories">Categories</a></li>
-            <li><a data-toggle="tab" href="#syllabi">Syllabi</a></li>
-            <!--<li><a data-toggle="tab" href="#links">Links</a></li>-->
+        <p class="show-heading"><%= syllabi.length %> results matching the specification: <%= language + " " + country + ' ' + explicitOrScraped + ' ' + syllabusSource%></h5>
+        
+        
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Categories</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Syllabi</a>
+            </li>
+            <!--<li class="nav-item">-->
+            <!--    <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Links</a>-->
+            <!--</li>-->
         </ul>
         
-        <div class="tab-content">
-            <div id="categories" class="tab-pane fadein active">
-                <table class="table-hover table-condensed">
-                    <% fields.categories.forEach(function(category){ %>
-                        <% var result = syllabi.filter(function(syllabus){ %>
-                            <% return syllabus.LOCategories.indexOf(category) > -1; %>
-                        <% }) %>
-
-                        <tr>
-                            <td><a href="/sigcse2019/results/category?category=<%= escape(category) %>&lang=<%=language%>&country=<%=country%>&explicitOrScraped=<%=explicitOrScraped%>&source=<%=syllabusSource%>"><%= category %></a></td>
-                            <td><%= result.length %></td>
-                        </tr>
-                    <% }) %>
-                </table>
-            </div>
-            
-            <div id="syllabi" class="tab-pane fade">
-                <table id="subTable" class="table-hover table-condensed">
+        <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                <table class="table table-hover">
                     <thead>
                         <tr>
-                            <th>#</th>
-                            <th>Location</th>
-                            <th>Module Code</th>
-                            <th>Module Title</th>
-                            <th>University</th>
-                            <th>Programming Language</th>
+                            <th scope="col">Category</th>
+                            <th scope="col">Number of Results</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% fields.categories.forEach(function(category){ %>
+                            <% var result = syllabi.filter(function(syllabus){ %>
+                                <% return syllabus.LOCategories.indexOf(category) > -1; %>
+                            <% }) %>
+    
+                            <tr>
+                                <td><a href="/sigcse2019/results/category?category=<%= escape(category) %>&lang=<%=language%>&country=<%=country%>&explicitOrScraped=<%=explicitOrScraped%>&source=<%=syllabusSource%>"><%= category %></a></td>
+                                <td><%= result.length %></td>
+                            </tr>
+                        <% }) %>
+                    </tbody>
+                </table>
+            </div>
+            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Location</th>
+                            <th scope="col">Module Code</th>
+                            <th scope="col">Module Title</th>
+                            <th scope="col">University</th>
+                            <th scope="col">Programming Language</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -74,7 +92,7 @@
                         <% syllabi.forEach(function(syllabus){ %>
                             
                                 <tr>
-                                    <td><%=i%></td>
+                                    <th scope="row"><%=i%></th>
                                     <td><%= syllabus.country %></td>
                                     <td><%= syllabus.courseCode %></td>
                                     <td><a href="/sigcse2019/results/<%= syllabus._id %>"><%= syllabus.courseName %></a></td>
@@ -86,8 +104,7 @@
                     </tbody>
                 </table>
             </div>
-            
-            <!--<div id="links" class="tab-pane fade">-->
+            <!--<div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">-->
             <!--    <table id="subTable" class="table-hover table-condensed">-->
             <!--        <tbody>-->
             <!--            <% syllabi.forEach(function(syllabus){ %>-->
@@ -99,6 +116,7 @@
             <!--    </table>-->
             <!--</div>-->
         </div>
+        
         
     </div>
 

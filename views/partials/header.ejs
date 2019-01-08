@@ -3,49 +3,104 @@
     <head>
         <title>CS1</title>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <link rel="stylesheet" type="text/css" href="/stylesheets/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="/stylesheets/app.css">
-
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i|Raleway:400,500,700" rel="stylesheet">
+        
+        <!--<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>-->
+        <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>-->
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
     </head>
+    
     <body>
+        <script>
+            $(function(){
+                $('a').each(function(){
+                    if ($(this).prop('href') == window.location.href) {
+                        $(this).addClass('active'); $(this).parents('li').addClass('active');
+                    }
+                });
+            });
+        </script>
         
         <div class="container">
             <header class="jumbotron">
-                <div class="container">
-                    <h1>Categorizing CS1</h1>
-                    <p>What are CS1 students learning?</p>
+                <div id="title" class="container">
+                    <p>What Do CS1 Syllabi Reveal About Our Expectations of Introductory Programming Students?</p>
                 </div>
             </header>
             
-            <nav class="navbar navbar-default">
-                <div class="container-fluid">
-                    <div class="navbar-header">
-                        <a class="navbar-brand" href="/sigcse2019/">Home</a>
+            <nav class="navbar navbar-expand-lg">
+                <div class="container">
+                    
+                    <!--<a class="navbar-brand" href="/">Home</a>-->
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav nav-pills w-100 d-flex align-items-centre justify-start">
+                            <li class="nav-item">
+                                <a class="nav-link" href="/sigcse2019/">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/sigcse2019/results">Syllabus Database</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/sigcse2019/download">Download Collection</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/sigcse2019/help">Help</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/sigcse2019/submissions/new">Contribute Syllabus</a>
+                            </li>
+                            <% if(!currentUser){ %>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/sigcse2019/admin">Admin</a>
+                                </li>
+                            <% } else { %>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/sigcse2019/submissions">View Submissions</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/sigcse2019/logout">Logout</a>
+                                </li>
+                            <% } %>
+                        </ul>
                     </div>
-                    <ul class="nav navbar-nav navbar-left">
-                        <li><a href="/sigcse2019/results">Results</a></li>
-                    </ul>
-                    <ul class="nav navbar-nav navbar-left">
-                        <li><a href="/sigcse2019/help">Help</a></li>
-                    </ul>
-                    <ul class="nav navbar-nav navbar-left">
-                        <li><a href="/sigcse2019/submissions/new">Contribute Syllabus</a></li>
-                    </ul>
-                    <% if(!currentUser){ %>
-                        <ul class="nav navbar-nav navbar-right">
-                            <li><a href="/sigcse2019/admin">Admin</a></li>
-                        </ul>
-                    <% } else { %>
-                        <ul class="nav navbar-nav navbar-left">
-                            <li><a href="/sigcse2019/submissions">View Submissions</a></li>
-                        </ul>
-                        <ul class="nav navbar-nav navbar-right">
-                            <li><a href="/sigcse2019/logout">Logout</a></li>
-                        </ul>
-                    <% } %>
                 </div>
             </nav>
+            
+            
+            <!--<nav class="navbar navbar-default">-->
+            <!--    <div class="container-fluid">-->
+            <!--        <div class="navbar-header">-->
+            <!--            <a class="navbar-brand" href="/sigcse2019/">Home</a>-->
+            <!--        </div>-->
+            <!--        <ul class="nav navbar-nav navbar-left">-->
+            <!--            <li><a href="/sigcse2019/results">Results</a></li>-->
+            <!--        </ul>-->
+            <!--        <ul class="nav navbar-nav navbar-left">-->
+            <!--            <li><a href="/sigcse2019/help">Help</a></li>-->
+            <!--        </ul>-->
+            <!--        <ul class="nav navbar-nav navbar-left">-->
+            <!--            <li><a href="/sigcse2019/submissions/new">Contribute Syllabus</a></li>-->
+            <!--        </ul>-->
+            <!--        <% if(!currentUser){ %>-->
+            <!--            <ul class="nav navbar-nav navbar-right">-->
+            <!--                <li><a href="/sigcse2019/admin">Admin</a></li>-->
+            <!--            </ul>-->
+            <!--        <% } else { %>-->
+            <!--            <ul class="nav navbar-nav navbar-left">-->
+            <!--                <li><a href="/sigcse2019/submissions">View Submissions</a></li>-->
+            <!--            </ul>-->
+            <!--            <ul class="nav navbar-nav navbar-right">-->
+            <!--                <li><a href="/sigcse2019/logout">Logout</a></li>-->
+            <!--            </ul>-->
+            <!--        <% } %>-->
+            <!--    </div>-->
+            <!--</nav>-->
         </div>
         
        

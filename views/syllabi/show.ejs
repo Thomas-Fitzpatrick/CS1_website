@@ -1,69 +1,121 @@
 <% include ../partials/header %>
 
 <div class="container">
-    <h1>This is the show template.</h1>
+    <p class="spacer"></p>
+
     
-    <table class="table-hover table-condensed">
-        <tr>
-            <td>courseID:</td> 
-            <td><%= syllabus.courseID %></td></tr>
-        <tr>
-            <td>researcher:</td>
-            <td><%= syllabus.researcher %></td></tr>
-        <tr>
-            <td>country:</td>
-            <td><%= syllabus.country %></td></tr>
-        <tr>
-            <td>uniName:</td>
-            <td><%= syllabus.uniName %></td></tr>
-        <tr>
-            <td>courseCode:</td>
-            <td><%= syllabus.courseCode %></td></tr>
-        <tr>
-            <td>courseName:</td>
-            <td><%= syllabus.courseName %></td></tr>
-        <tr>
-            <td>syllabusDate:</td>
-            <td><%= syllabus.syllabusDate %></td></tr>
-        <tr>
-            <td>syllabusSource:</td>
-            <td><%= syllabus.syllabusSource %></td></tr> 
-        <tr>
-            <td>associatedDegrees:</td>
-            <td><%= syllabus.associatedDegrees %></td></tr>
-        <tr>
-            <td>prerequisites:</td>
-            <td><%= syllabus.prerequisites %></td></tr>
-        <tr>
-            <td>forMajors:</td>
-            <td><%= syllabus.forMajors %></td></tr>
-        <tr>
-            <td>courseStage:</td>
-            <td><%= syllabus.courseStage %></td></tr>
-        <tr>
-            <td>courseSemester:</td>
-            <td><%= syllabus.courseSemester %></td></tr>
-        <tr>
-            <td>programmingLanguage:</td>
-            <td><%= syllabus.programmingLanguage %></td></tr>
-        <tr>
-            <td>instructionLanguage:</td>
-            <td><%= syllabus.instructionLanguage %></td></tr>
-        <tr>
-            <td>url:</td>
-            <td><a href="<%= syllabus.url %>"><%= syllabus.url %></a></td>
+    <p class="show-heading"><%= syllabus.uniName %> - <%= syllabus.courseName %></p>
+    
+    <p></p>
+    
+    <table class="table table-hover">
+        <tbody>
+            <!--<tr>-->
+            <!--    <td>courseID:</td> -->
+            <!--    <td><%= syllabus.courseID %></td>-->
+            <!--</tr>-->
+            
+            <!--<tr>-->
+            <!--    <td>researcher:</td>-->
+            <!--    <td><%= syllabus.researcher %></td>-->
+            <!--</tr>-->
+            
+            <tr>
+                <td>Country:</td>
+                <td><%= syllabus.country %></td>    
             </tr>
             
-        <tr>
-            <td>explicitOrScraped:</td>
-            <td><%= syllabus.explicitOrScraped %></td></tr>
-        <tr>
-            <td>learningOutcomes:</td>
-            <td><%= syllabus.learningOutcomes %></td></tr>
-        <tr>
-            <td>LOCategories:</td>
-            <td><%= syllabus.LOCategories %></td></tr>
+            <tr>
+                <td>University:</td>
+                <td><%= syllabus.uniName %></td>
+            </tr>
+            
+            <tr>
+                <td>Course code:</td>
+                <td><%= syllabus.courseCode %></td>
+            </tr>
+            
+            <tr>
+                <td>Course title:</td>
+                <td><%= syllabus.courseName %></td>
+            </tr>
+            
+            <tr>
+                <td>Date of Syllabus:</td>
+                <td><%= syllabus.syllabusDate %></td>
+            </tr>
+            
+            <tr>
+                <td>Source:</td>
+                <td><%= syllabus.syllabusSource %></td>
+            </tr> 
+            
+            <tr>
+                <td>Associated Degrees:</td>
+                <td><%= syllabus.associatedDegrees %></td>
+            </tr>
+            
+            <tr>
+                <td>Prerequisits:</td>
+                <td><%= syllabus.prerequisites %></td>
+            </tr>
+            
+            <tr>
+                <td>Course for Majors:</td>
+                <td><%= syllabus.forMajors %></td>
+            </tr>
+            
+            <tr>
+                <td>Course stage:</td>
+                <td><%= syllabus.courseStage %></td>
+            </tr>
+            
+            <tr>
+                <td>Semester:</td>
+                <td><%= syllabus.courseSemester %></td>
+            </tr>
+            
+            <tr>
+                <td>Programming language:</td>
+                <td><%= syllabus.programmingLanguage %></td>
+            </tr>
+            
+            <tr>
+                <td>Language of Instruction:</td>
+                <td><%= syllabus.instructionLanguage %></td>
+            </tr>
+            
+            <tr>
+                <td>URL:</td>
+                <td><a href="<%= syllabus.url %>"><%= syllabus.url %></a></td>
+            </tr>
+                
+            <tr>
+                <td>Explicit or !Explicit LOs:</td>
+                <td><%= syllabus.explicitOrScraped %></td>
+            </tr>
+            
+            <tr>
+                <td>Learning Outcomes:</td>
+                <td>
+                    <% syllabus.learningOutcomes.forEach(function(outcome){ %>
+                        <p><%= outcome %></p>
+                    <% }) %>
+                </td>
+            </tr>
+            
+            <tr>
+                <td>LO categories:</td>
+                <td>
+                    <% syllabus.LOCategories.forEach(function(category){ %>
+                        <p><%= category %></p>
+                    <% }) %>
+                </td>
+            </tr>
+            
+        </tbody>
     </table>
+    
 </div>
 
 <% include ../partials/footer %>
