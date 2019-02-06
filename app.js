@@ -52,6 +52,10 @@ app.use(function(req, res, next){
     next();
 })
 
+app.get("/", function(req, res){
+    res.render("directory");
+})
+
 // get home page
 app.get("/sigcse2019/", function(req, res){
     console.log(fields);
@@ -102,8 +106,10 @@ app.post("/sigcse2019/submissions", function(req, res){
         text: 'The following submission was made at csed.ucd.ie:\n\n' +
                 'Country: ' + req.body.submission.country + 
                 '\nURL: ' + req.body.submission.url + 
-                '\nforMajors: ' + req.body.submission.forMajors
-                
+                '\nCourse Code: ' + req.body.submission.code +
+                '\nCourse Title: ' + req.body.submission.title + 
+                '\nInstitution: ' + req.body.submission.institution + 
+                '\nEmail: ' + req.body.submission.email
     };
     
     transporter.sendMail(mailOptions, function(error, info){
@@ -286,7 +292,6 @@ app.post("/sigcse2019/results", isLoggedIn, function(req, res){
                     }); 
                 }
             });    
-            
             
         }
     });

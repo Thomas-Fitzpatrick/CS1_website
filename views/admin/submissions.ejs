@@ -19,16 +19,22 @@
             <thead>
                 <tr>
                     <th scope="col">Country</th>
-                    <th scope="col">For Majors?</th>
                     <th scope="col">URL</th>
+                    <th scope="col">Code</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Institution</th>
+                    <th scope="col">Email</th>
                 </tr>                                                   
             </thead>
             <tbody>
                 <% submissions.forEach(function(submission){ %>
                         <tr>
                             <td><%= submission.country %></td>
-                            <td><%= submission.forMajors %></td>
                             <td><%= submission.url %></td>
+                            <td><%= submission.code %></td>
+                            <td><%= submission.title %></td>
+                            <td><%= submission.institution %></td>
+                            <td><%= submission.email %></td>
                         </tr>
                 <% }) %>
             </tbody>

@@ -8,13 +8,15 @@
         <form action="/sigcse2019/results/filter" method="GET" class="form-inline">
             <select class="form-control" name="lang">
                 <option value="">Language - Any</option>
+                <% var language_opts = fields.languages.sort(); %>
                 <% fields.languages.forEach(function(lang){ %>
                         <option value="<%=lang%>"><%=lang%></option>
                 <% }) %>
             </select>
             <select class="form-control" name="country">
               	<option value="">Location - Any</option>
-                <% fields.countries.forEach(function(country){ %>
+              	<% var country_opts = fields.countries.sort(); %>
+                <% country_opts.forEach(function(country){ %>
                         <option value="<%=country%>"><%=country%></option>
                 <% }) %>
             </select>
@@ -27,7 +29,7 @@
             <select class="form-control" name="source">
               	<option value="">All sources</option>
               	<option value="Manual search">Manual only</option>
-              	<option value="CITIDEL">CITIDEL only</option>
+              	<!--<option value="CITIDEL">CITIDEL only</option>-->
               	<option value="Submitted">Submitted only</option>
             </select>
             <div class="form-group">
@@ -81,8 +83,8 @@
                         <tr>
                             <th scope="col">#</th>
                             <th scope="col">Location</th>
-                            <th scope="col">Module Code</th>
-                            <th scope="col">Module Title</th>
+                            <th scope="col">Course Code</th>
+                            <th scope="col">Course Title</th>
                             <th scope="col">University</th>
                             <th scope="col">Programming Language</th>
                         </tr>

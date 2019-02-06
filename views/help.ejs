@@ -1,14 +1,70 @@
 <% include partials/header %>
 
 <div class="container">
-    
     <p class="spacer"></p>
-    
-    <h1>Help page</h1>
-    
-    <p>Information about using this tool</p>
-    
+    <h1 style="text-align: center">Information</h1>
     <p class="spacer"></p>
+    <div class="d-flex flex-column align-items-start">
+        
+        <p>
+            This page contains supplementary information for the publication.
+        </p>
+        
+        <p>
+		    Brett A. Becker and Thomas Fitzpatrick. 2019. What Do CS1 Syllabi Reveal About Our Expectations of Introductory Programming Students?. In Proceedings of the 50th ACM Technical Symposium on Computer Science Education (SIGCSE ’19), February 27-March 2, 2019, Minneapolis, MN, USA. ACM, New York, NY, USA, 7 pages. 
+		    <a href="https://doi.org/10.1145/3287324.3287485">https://doi.org/10.1145/3287324.3287485</a>
+		</p>
+		
+        
+        <p>
+        The full-text of this paper is available through the ACM authorizer service as paper [35] at 
+        <a href="www.brettbecker.com/publications">www.brettbecker.com/publications</a>
+        </p>
+        
+        <p>
+            Most of the details required to use this site are in the paper. Below we clarify a few technicalities and uses of terminology.
+            <ul class="p-0" align="left">
+                <li class="services-list list-group-item">
+						<p>
+						    The main interface is through the ‘Syllabus Database’ tab above, or here: 
+						    <a href="http://csed.ucd.ie/sigcse2019/results">http://csed.ucd.ie/sigcse2019/results</a>
+                        </p>
+				</li>
+				<li class="services-list list-group-item">
+				    The syllabi can be searched based on any combination of
+				    <ul>
+				        <li>Programming language</li>
+				        <li>Location (country)</li>
+				        <li>
+				            Learning Outcome type (Explicit, Scraped, or both)
+				            <ul>
+				                <li>Explicit Learning outcomes specifically mention something that students are expected to know, or be able to do, upon successful completion of a course.</li>
+                                <li>Scraped Learning outcomes refer to syllabi where there were no explicit learning outcomes, for which we ‘scraped’ concepts from other syllabus content. </li>
+				            </ul>
+				        </li>
+				        <li>
+				            Source (Manual or Submitted)
+				            <ul>
+				                <li>Manual refers to syllabi that we manually curated as described in the paper.</li>
+				                <li>Submitted are syllabi submitted by the community.</li>
+				            </ul>
+				        </li>
+				    </ul>
+
+				</li>
+				<li class="services-list list-group-item">
+				    Results can be viewed by Categories or Syllabi
+				    <ul>
+				        <li>Categories returns a list of Learning Outcome categories, and the number of syllabi that match that category. Clicking on the category name will bring you to a list of courses whose syllabi match the category. Clicking on the course title will reveal the details of that course.</li>
+			            <li>Syllabi returns a list of courses that match the search parameters. Clicking on the course title will reveal the details of that course.</li>
+				    </ul>
+				</li>
+				<li class="services-list list-group-item">The details of each course contain links to the syllabus at the institution where the course is delivered.</li>
+                <li class="services-list list-group-item">To submit your own syllabus see <a href="http://csed.ucd.ie/sigcse2019/submissions/new">http://csed.ucd.ie/sigcse2019/submissions/new</a></li>
+            </ul>
+        </p>
+    </div>
+        
 </div>
 
 <% include partials/footer %>
