@@ -8,8 +8,8 @@ var     User = require("./models/user");
 
 mongoose.connect("mongodb://localhost/CS1_results");
 
-var newUser = new User({username: "thomas"});
-User.register(newUser, "admin", function(err, user){
+var newUser = new User({username: "BrettBecker"});
+User.register(newUser, "webCrawler", function(err, user){
         if(err){
                 console.log(err);
         }
