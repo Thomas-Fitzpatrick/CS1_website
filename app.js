@@ -4,6 +4,7 @@ var express         = require("express"),
     mongoose        = require("mongoose"),
     passport        = require("passport"),
     LocalStrategy   = require("passport-local"),
+    request         = require('request'),
     fs              = require("fs"),
     nodemailer      = require('nodemailer');
     
@@ -112,21 +113,48 @@ app.post("/sigcse2019/submissions", function(req, res){
                 '\nEmail: ' + req.body.submission.email
     };
     
+    if(req.body['g-recaptcha-response'] === undefined || req.body['g-recaptcha-response'] === '' || req.body['g-recaptcha-response'] === null) {
+        return res.json({"responseCode" : 1,"responseDesc" : "Please select captcha"});
+    }
+    // Put your secret key here.
+    var secretKey = "6LeeM5IUAAAAAKCllVo5tWQHsg-QIEnlgpwNjLwq";
+    // req.connection.remoteAddress will provide IP address of connected user.
+    var verificationUrl = "https://www.google.com/recaptcha/api/siteverify?secret=" + secretKey + "&response=" + req.body['g-recaptcha-response'] + "&remoteip=" + req.connection.remoteAddress;
+    // Hitting GET request to the URL, Google will respond with success or error scenario.
+    request(verificationUrl,function(error,response,body) {
+    body = JSON.parse(body);
+    // Success will be true or false depending upon captcha validation.
+    if(body.success !== undefined && !body.success) {
+        alert("Please check captcha verification box.")
+        res.redirect("/syllabi/newSubmission")
+        // return res.json({"responseCode" : 1,"responseDesc" : "Failed captcha verification"});
+    }
     transporter.sendMail(mailOptions, function(error, info){
         if (error) {
             console.log(error);
         } else {
+            alert("email sent")
             console.log('Email sent: ' + info.response);
         }
     });
-    
     Submission.create(req.body.submission, function(err, newSub){
         if(err){
             console.log(err);
         } else {
             res.redirect("/sigcse2019/submissions/thanks");
+            //res.json({"responseCode" : 0,"responseDesc" : "Sucess"});
         }
     });
+    
+    });
+    
+    
+    
+    
+    
+    
+    
+    
 });
 
 app.get("/sigcse2019/submissions/thanks", function(req, res){

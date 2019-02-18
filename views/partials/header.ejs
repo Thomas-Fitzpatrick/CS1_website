@@ -3,6 +3,9 @@
     <head>
         <title>CS1</title>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+        <script src="https://www.google.com/recaptcha/api.js?render=reCAPTCHA_site_key"></script>
+
         <link rel="stylesheet" type="text/css" href="/stylesheets/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="/app.css">
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i|Raleway:400,500,700" rel="stylesheet">
@@ -13,6 +16,24 @@
     </head>
     
     <body>
+        
+        
+        <script>
+            $(document).ready(function() {
+              $('#comment_form').submit(function() {
+                $(this).ajaxSubmit({
+                  error: function(xhr) {
+                    status('Error: ' + xhr.status);
+                  },
+                 success: function(response) {
+                  console.log(response);
+                 }
+                });
+                //Very important line, it disable the page refresh.
+                return false;
+              });
+            });
+        </script>
         <script>
             $(function(){
                 $('a').each(function(){
