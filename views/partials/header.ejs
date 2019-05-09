@@ -3,12 +3,14 @@
     <head>
         <title>CS1</title>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery.form/3.51/jquery.form.min.js"></script> 
         <script src="https://www.google.com/recaptcha/api.js?render=reCAPTCHA_site_key"></script>
 
         <link rel="stylesheet" type="text/css" href="/stylesheets/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="/app.css">
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i|Raleway:400,500,700" rel="stylesheet">
+        
+        
         
         <!--<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>-->
         <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>-->
@@ -17,9 +19,19 @@
     
     <body>
         
+    
         
         <script>
+            $(function(){
+                $('a').each(function(){
+                    if ($(this).prop('href') == window.location.href) {
+                        $(this).addClass('active'); $(this).parents('li').addClass('active');
+                    }
+                });
+            });
+            
             $(document).ready(function() {
+                console.log("in the script");
               $('#comment_form').submit(function() {
                 $(this).ajaxSubmit({
                   error: function(xhr) {
@@ -32,15 +44,6 @@
                 //Very important line, it disable the page refresh.
                 return false;
               });
-            });
-        </script>
-        <script>
-            $(function(){
-                $('a').each(function(){
-                    if ($(this).prop('href') == window.location.href) {
-                        $(this).addClass('active'); $(this).parents('li').addClass('active');
-                    }
-                });
             });
         </script>
         
