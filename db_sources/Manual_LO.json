@@ -6662,7 +6662,7 @@
       "courseStage":1,
       "courseSemester":null,
       "programmingLanguage":[  
-         "C"
+         "ML"
       ],
       "instructionLanguage":"English",
       "url":"https://www.cl.cam.ac.uk/teaching/1112/FoundsCS/",
@@ -8664,6 +8664,82 @@
          "Designing Algorithms",
          "How Computers & computational systems work & history of computing",
          "Testing & Debugging code"
+      ]
+   },
+   {  
+      "syllabusSource":"Submitted",
+      "courseID":"M234",
+      "researcher":"TF",
+      "country":"USA",
+      "uniName":"University of Wisconsin - Madison",
+      "courseCode":"CS200",
+      "courseName":"Programming 1",
+      "associatedDegrees":"Computer Science",
+      "prerequisites":"no",
+      "forMajors":"yes",
+      "courseStage":1,
+      "courseSemester":null,
+      "programmingLanguage":[  
+         "Java"
+      ],
+      "instructionLanguage":"English",
+      "url":"https://cs200-www.cs.wisc.edu/wp/syllabus/",
+      "explicitOrScraped":"Explicit",
+      "learningOutcomes":[  
+         "Design and implement a standalone program that can interact with the user via prompts and or menus, access and edit data stored in an array or list structure, and use and further process the data found in those structures.",
+         "Able to trace code to determine output or results.",
+         "Able to implement a given program design and choose correct control structures for implementing algorithms expressed in pseudocode.",
+         "Able to interpret a variety of diagram types used to express programming concepts and results: truth tables, memory model diagrams, control flow charts (activity diagrams), class diagrams, object diagrams, and use-case diagrams.",
+         "List, describe, use the basic I/O operations for reading and writing text files to and from the computer’s hard drive."
+      ],
+      "LOCategories":[  
+         "Writing programs",
+         "Designing Algorithms",
+         "Control Structures & logic (if/else etc)",
+         "File handling & I/O",	
+	 "Program Comprehension"
+      ]
+   },
+   {  
+      "syllabusSource":"Submitted",
+      "courseID":"M235",
+      "researcher":"TF",
+      "country":"Netherlands",
+      "uniName":"Delft University of Technology",
+      "courseCode":"CSE1100",
+      "courseName":"Object-oriented programming 1",
+      "associatedDegrees":"None",
+      "prerequisites":"no",
+      "forMajors":"yes",
+      "courseStage":1,
+      "courseSemester":null,
+      "programmingLanguage":[  
+         "Java"
+      ],
+      "instructionLanguage":"English",
+      "url":"https://studiegids.tudelft.nl/a101_displayCourse.do?course_id=48428",
+      "explicitOrScraped":"Explicit",
+      "learningOutcomes":[  
+         "Primitive datatypes: value domains, operators, expression, type conversions, declarations and assignments.",
+         "Control structures (selection and repetition): conditional selection (single, two-fold and multiple statements), repetition (pretest and posttest loops).",
+         "Composition of data: arrays, Strings, ArrayLists, Sets, Maps.",
+         "Classes: specification and implementation.",
+         "Inheritance: modeling inheritance, type casts, redefining methods, static and dynamic binding.",
+	"Use of libraries (APIs): e.g., to work with files, network, multi-threading.",
+	"Implementation of small programs.Testing of small programs with unit testing.",
+	"Debugging strategies.",
+	"A selection of more advanced programming topics."
+      ],
+      "LOCategories":[  
+         "Writing programs",
+         "Control Structures & logic (if/else etc)",
+         "Arrays, Lists, dictionaries, vectors, sets",
+         "Inheritance",	
+	 "Multi Threading & Concurrency",
+	 "Testing & Debugging code",
+	 "File handling & I/O",
+	 "Variables, assignment, arithmetic expressions, declarations, data types", 
+	 "Basic OOP"
       ]
    }
 ]

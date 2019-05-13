@@ -75,4 +75,4 @@ function getAvailableFields(callback){
     });
    
 }
-module.exports = getAvailableFields
+module.exports = seedDB
